@@ -9,7 +9,7 @@ public:
 
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         int len = strs.size(); vector<vector<string>> ans;
-        unordered_map<vector<int> vector<string>> mp;
+        map<vector<int>, vector<string>> mp;
         for(string str : strs) {
             vector<int> _hash = findHash(str);
             if(mp.find(_hash) == mp.end()) {
