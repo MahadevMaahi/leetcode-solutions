@@ -24,6 +24,15 @@ public:
         return right;
     }
 
+    TreeNode* makeCopy(TreeNode *root) {
+        if(root == nullptr) return root;
+        TreeNode *tp = getNode();
+        tp -> val = root -> val;
+        tp -> left = make_copy(root -> left);
+        tp -> right = make_copy(root -> right);
+        return tp;
+    }
+
     vector<TreeNode*> generateTrees(int n) {
         vector<TreeNode *> vt;
         vector<vector<TreeNode *>> dp(n + 1, vt);
@@ -38,8 +47,8 @@ public:
                 TreeNode *tp = getNode();
                 for(TreeNode *tj : dp[j]) {
                     for(TreeNode *ti_j_1 : dp[i - j - 1]) {
-                        tp->left = tj;
-                        tp->right = ti_j_1;
+                        tp->left = make_copy(tj);
+                        tp->right = make_copy(ti_j_1);
                         dp[i].push_back(tp);
                     }
                 }
